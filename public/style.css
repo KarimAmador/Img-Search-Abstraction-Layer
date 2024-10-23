@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+    font-family: sans-serif;
+}
+
+main {
+    margin: 0 auto;
+    overflow: auto;
+    width: 95%;
+}
+
+.search-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-div {
+    margin-bottom: 1rem;
+}
+
+.search-div * {
+    margin-top: 1rem;
+}
+
+input {
+    width: 20rem;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.button {
+    width: 6.4rem;
+    padding: 0.1rem 0.6rem;
+    border: 0.1rem outset #9c9c9c;
+    border-radius: 0.3rem;
+    color: buttontext;
+    background-color: buttonface;
+    text-decoration: none;
+    user-select: none;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #ddd;
+}
+
+#searchQuery {
+    margin-top: 10rem;
+}
