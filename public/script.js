@@ -24,8 +24,7 @@ const updateURL = (e) => {
 
 [query, page].forEach(i => i.addEventListener('change', updateURL));
 [query, page].forEach(i => i.addEventListener('keydown', (e) => {
-    const code = e.keyCode || e.which;
-    if (code == 13 && query.value) {
+    if (e.key == 'Enter' && query.value) {
         updateURL(e);
         window.location.href = searchQuery.innerText;
     }
