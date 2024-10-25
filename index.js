@@ -22,7 +22,7 @@ app.get('/query/:search', async (req, res) => {
     console.log(req.query);
     
     try {
-        const results = await fetch(`${cse}?cx=${process.env.CX}&q=${encodeURI(req.params.search)}&start=${(Number(req.query.page) * 10) + 1}&searchType=image&key=${process.env.API_KEY}`)
+        const results = await fetch(`${cse}?cx=${process.env.CX}&q=${encodeURI(req.params.search)}&start=${(Number(req.query.page) * 10) + 1}${req.query.size ? '&imgSize=' + req.query.size : ''}&searchType=image&key=${process.env.API_KEY}`)
                             .then(res => res.json());
 
         if (results.searchInformation?.totalResults == 0) {
