@@ -45,6 +45,15 @@ app.get('/query/:search', async (req, res) => {
     }
 });
 
+app.get('/recent', async (req, res) => {
+    try {
+        const recent = await Query.find({}).select({ __v: 0 }).exec();
+        res.json(recent);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 app.use(function(req, res, next) {
     res.status(404)
       .type('text')
