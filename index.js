@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const connectDB = require('./db/connect.js');
+const Query = require('./models/query.js');
 require('dotenv').config();
 
 const cse = 'https://customsearch.googleapis.com/customsearch/v1';
@@ -33,6 +35,10 @@ app.get('/query/:search', async (req, res) => {
             return res.status(400).json(results.error);
         }
         
+        const query = new Query({ searchQuery: req.params.search });
+
+        await query.save();
+
         res.json(results.items);
     } catch (err) {
         return res.json(err);
@@ -45,6 +51,17 @@ app.use(function(req, res, next) {
       .send('Not Found');
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Listening on port ${process.env.PORT || 3000}.`);
-});
+const start = async () => {
+    try {
+        await connectDB();
+
+        const port = process.env.PORT || 3000;
+        app.listen(port, () => {
+            console.log(`Listening on port ${port}.`);
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+start();
